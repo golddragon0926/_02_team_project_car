@@ -3,7 +3,7 @@
 # =============================================
 
 # 오피넷 API 키
-OPINET_API_KEY = "zBJrnP4z2Vn8svmS5KGaaoaTLJJrZ1axk6gxfnCe4"
+OPINET_API_KEY = "F260612780"
 
 # 공공데이터포털 API 키
 PUBLIC_API_KEY = "ad1dfa87ba99eefd5b8a55dd8f8cf897d603cc2ad597174d6f56d96ca0ef6665"
