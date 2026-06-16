@@ -74,18 +74,27 @@ def load_csv(file_path, fuel_code):
 # 실행
 # =============================================
 if __name__ == '__main__':
-    # 파일 경로 설정 (본인 경로로 수정)
-    BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-
-    # 휘발유
+    # 기존 휘발유 (2024~2025)
     load_csv(
-        r'/DB/주유소_지역별_평균판매가격_휘발유.csv',
+        r'D:\SKN_AI\project01\DB\주유소_지역별_평균판매가격_휘발유.csv',
         fuel_code='GAS'
     )
 
-    # 경유
+    # 기존 경유 (2024~2025)
     load_csv(
-        r'/DB/주유소_지역별_평균판매가격_경유.csv',  # ← 괄호 없음
+        r'D:\SKN_AI\project01\DB\주유소_지역별_평균판매가격_경유.csv',
+        fuel_code='DSL'
+    )
+
+    # 2026년 휘발유
+    load_csv(
+        r'D:\SKN_AI\project01\DB\주유소_지역별_평균판매가격26휘발유.csv',
+        fuel_code='GAS'
+    )
+
+    # 2026년 경유
+    load_csv(
+        r'D:\SKN_AI\project01\DB\주유소_지역별_평균판매가격26경유.csv',
         fuel_code='DSL'
     )
 
