@@ -4,37 +4,37 @@
 
 import pymysql
 import pandas as pd
+import os
+import sys
 
-DB_CONFIG = {
-    "host"    : "localhost",
-    "user"    : "skn_ai",
-    "password": "1234",
-    "port"    : 3306,
-    "db"      : "car_project",
-    "charset" : "utf8mb4"
-}
+# 절대경로 설정
+BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+sys.path.append(BASE_DIR)
+from config.db_config import DB_CONFIG
 
 conn   = pymysql.connect(**DB_CONFIG)
 cursor = conn.cursor()
 print("MySQL 연결 성공! ✅")
 
-# ① 기존 데이터 삭제
+# 기존 데이터 삭제
 cursor.execute("DELETE FROM subsidy")
 conn.commit()
 print("기존 데이터 삭제 완료! ✅")
 
-# ② CSV 읽기
-df = pd.read_csv("보조금데이터.csv", encoding="utf-8-sig")
+# CSV 읽기
+csv_path = os.path.join(BASE_DIR, "data", "보조금데이터.csv")
+print(f"CSV 경로: {csv_path}")
+df = pd.read_csv(csv_path, encoding="cp949")
 print(f"CSV 읽기 완료! 총 {len(df)}개 ✅")
 
-# ③ 쉼표 제거 함수
+# 쉼표 제거 함수
 def to_int(val):
     try:
         return int(str(val).replace(",", "").strip())
     except:
         return 0
 
-# ④ 데이터 삽입
+# 데이터 삽입
 success = 0
 fail    = 0
 
@@ -63,14 +63,12 @@ for _, row in df.iterrows():
 conn.commit()
 print(f"\n삽입 완료! 성공: {success}개 / 실패: {fail}개 ✅")
 
-# ⑤ 확인
-cursor.execute("SELECT COUNT(*) FROM subsidy")
-count = cursor.fetchone()[0]
-print(f"DB 저장된 총 데이터: {count}개")
-
-cursor.execute("SELECT DISTINCT 시도 FROM subsidy")
-sidos = [r[0] for r in cursor.fetchall()]
-print(f"시도 목록: {sidos}")
+# 연도별 확인
+cursor.execute("SELECT 연도, COUNT(*) FROM subsidy GROUP BY 연도")
+rows = cursor.fetchall()
+print("\n=== 연도별 데이터 수 ===")
+for row in rows:
+    print(f"{row[0]}년: {row[1]}개")
 
 conn.close()
 print("\n완료! ✅")
