@@ -18,7 +18,8 @@
 본 프로젝트는 아래의 공공 데이터 및 API를 활용하여 구축되었습니다.
 - **[오피넷 (Opinet)](https://www.opinet.co.kr/)**: 지역별/기간별 실시간 유가 정보 데이터
 - **[e-나라지표 (지표누리)](https://www.index.go.kr/)**: 자동차 등록 현황 및 수송 관련 통계 데이터
-- **[뉴스 API 출처명](https://www.naver.com)**: 실시간 자동차 및 경제 관련 뉴스 수집
+- **[뉴스 API 출처명](https://www.naver.com/)**: 실시간 자동차 및 경제 관련 뉴스 수집
+- **[환경부 무공해차 통합누리집](https://ev.or.kr/)**: 전기차 보조금 데이터
 
 ## 🛠 기술 스택 (Tech Stack)
 - **Language**: Python 3.10
