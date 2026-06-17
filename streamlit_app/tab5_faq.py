@@ -24,8 +24,7 @@ def render_tab5():
     all_filters = list(FAQ_SOURCES.keys())
     selected_filters = st.multiselect(
         "📝 조회할 기관 및 브랜드를 선택하세요 (중복 선택 가능)",
-        options=all_filters,
-        default=all_filters
+        options=all_filters
     )
 
     # 통합 키워드 검색창
