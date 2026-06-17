@@ -80,10 +80,9 @@ elif menu == "🚗 2026년 전기차 보조금 확인":
     # ===============================
     st.subheader("📊 1. 조회결과 요약")
     col1, col2, col3, col4 = st.columns(4)
-    col1.metric("총 데이터",   f"{len(df)}개")
-    col2.metric("평균 보조금", f"{int(df['보조금'].mean())}만원")
-    col3.metric("최대 보조금", f"{int(df['보조금'].max())}만원")
-    col4.metric("최소 보조금", f"{int(df['보조금'].min())}만원")
+    col1.metric("평균 보조금", f"{int(df['보조금'].mean())}만원")
+    col2.metric("최대 보조금", f"{int(df['보조금'].max())}만원")
+    col3.metric("최소 보조금", f"{int(df['보조금'].min())}만원")
 
     st.markdown("---")
 
