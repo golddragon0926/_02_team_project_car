@@ -31,6 +31,15 @@ def clean(text):
     for remove in ["도움이 되었습니까", "모델 & 옵션",
                    "Skip to", "닫기", "전체 도움말 보기"]:
         text = text.replace(remove, "")
+    # 면책/안내 문구 제거 (구두점 변형까지 정규식으로)
+    disclaimer_patterns = [
+        r'차량의 옵션[,·\s]*기능 및 서비스는 국가 및 상황에 따라.*?딜러사 전시장에 문의하시기 바랍니다\.?',
+        r'위 전비 및 주행 가능 거리 정보는 표준모드 기준이며.*?실제 값과 차이가 있을 수 있습니다\.?',
+        r'충전 시간은 충전기의 종류[,·\s]*배터리 컨디션 및 외부 온도 등에 따라 달라질 수 있습니다\.?',
+    ]
+    for pat in disclaimer_patterns:
+        text = re.sub(pat, "", text)
+    text = re.sub(r'\s+', ' ', text)
     return text.strip()
 
 all_data = []
@@ -118,7 +127,7 @@ for item in items:
         cat_tag = item.find(class_="article-category")
         category = clean(cat_tag.get_text()) if cat_tag else ""
 
-        if title and len(content) > 10 and title != category:
+        if title.endswith("?") and len(content) > 10 and title != category:
             all_data.append({
                 "title"   : title,
                 "content" : content,
