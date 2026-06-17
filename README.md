@@ -14,7 +14,7 @@
 - **데이터 추출**: DB에 축적된 데이터를 CSV 파일로 추출하여 추가적인 데이터 분석 가능 (`export_csv.py`).
 
 ## 🛠 기술 스택 (Tech Stack)
-- **Language**: Python 3.x
+- **Language**: Python 3.10
 - **Web Application (Frontend)**: Streamlit
 - **Data Analysis & Statistics**: Pandas, NumPy, SciPy, Statsmodels
 - **Data Visualization**: Plotly, Altair, Matplotlib, Pydeck
@@ -116,3 +116,4 @@ streamlit run streamlit_app/app.py
 | **[김영석]** | **Data Engineering & Crawling**<br>- 실시간 뉴스 API 설계 및 구현 (`news_api.py`)<br>- 전처리 및 데이터 추출 로직 작성 | [@github_id](https://github.com/github_id) |
 | **[송지섭]** | **Data Engineering & Crawling**<br>- 자동차 현황 및 연료 가격 DB데이터 설계 및 정제 (`db_config.py`, `opinet_api.py`)<br>- 전처리 및 통계 데이터 추출 로직 작성 (`export_csv.py`) | [@github_id](https://github.com/github_id) |
 | **[최경돈]** | **Data Engineering & Crawling**<br>- DB데이터 설계 및 정제  (`news_api.py`)<br>- 전처리 및 통계 데이터 추출 로직 작성 (`export_csv.py`) | [@github_id](https://github.com/github_id) |
+
