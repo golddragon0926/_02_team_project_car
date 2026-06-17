@@ -5,7 +5,7 @@ import re
 
 def render_tab5():
     st.subheader("🚗 자동차 통합 FAQ 및 지원 플랫폼")
-    st.caption("현대자동차, 기아자동차, 오피넷, BMW 등 흩어져 있는 자동차 관련 핵심 FAQ를 이곳에서 한방에 검색하세요!")
+    st.caption("현대자동차, 기아자동차, 오피넷, BMW, KGM 등 흩어져 있는 자동차 관련 핵심 FAQ를 이곳에서 한방에 검색하세요!")
 
     base_path = os.getcwd()
 
@@ -14,7 +14,8 @@ def render_tab5():
         "현대자동차": os.path.join(base_path, "data", "hyundai_faq_data.csv"),
         "기아자동차": os.path.join(base_path, "data", "kia_faq_data.csv"),
         "오피넷": os.path.join(base_path, "data", "opinet_faq_data.csv"),
-        "BMW": os.path.join(base_path, "data", "bmw_faq_data.csv")
+        "BMW": os.path.join(base_path, "data", "bmw_faq_data.csv"),
+        "KGM": os.path.join(base_path, "data", "kgm_faq_data.csv")
         # "무공해차": os.path.join("data", "ev_faq_data.csv")
     }
 
@@ -55,7 +56,6 @@ def render_tab5():
                         elif col in ['답변', '답변(Answer)', 'Content']:
                             rename_dict[col] = 'content'
 
-                    # 🎯 [버그 해결] 중괄호를 제거하여 unhashable dict 에러를 완벽히 해결했습니다!
                     if rename_dict:
                         temp_df = temp_df.rename(columns=rename_dict)
 
@@ -91,10 +91,18 @@ def render_tab5():
                 df["content"].str.contains(search_query, case=False, na=False)
                 ]
 
-        st.write(f"📊 조건에 딱 맞는 FAQ를 총 **{len(df)}**건 찾았습니다!")
+        # 🎯 [핵심 수정] 검색 결과 중 상위 50개만 슬라이싱하여 제한합니다.
+        limited_df = df.head(50)
 
-        if not df.empty:
-            for idx, row in df.iterrows():
+        # 전체 검색 개수와 화면 표시 개수 상태 파악 후 안내 멘트 분기
+        if len(df) > 50:
+            st.write(f"📊 검색 조건에 맞는 FAQ 총 {len(df)}건 중 **상위 50건**을 출력합니다.")
+        else:
+            st.write(f"📊 조건에 딱 맞는 FAQ를 총 **{len(limited_df)}**건 찾았습니다!")
+
+        if not limited_df.empty:
+            # 50개로 제한된 데이터프레임(limited_df)만 순회하며 아코디언 출력
+            for idx, row in limited_df.iterrows():
                 # 부가 정보가 존재하는 경우 라벨 텍스트 동적 생성
                 extra_info = ""
                 if '분류' in row and pd.notna(row['분류']):
@@ -102,7 +110,6 @@ def render_tab5():
                 if '작성일' in row and pd.notna(row['작성일']):
                     extra_info += f" | {row['작성일']}"
 
-                # 아코디언 컴포넌트로 이쁘게 출력 ✨
                 with st.expander(f"📌 [{row['source']}{extra_info}] {row['title']}"):
                     st.write(row['content'])
         else:
