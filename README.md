@@ -14,16 +14,17 @@
 - **데이터 추출**: DB에 축적된 데이터를 CSV 파일로 추출하여 추가적인 데이터 분석 가능 (`export_csv.py`).
 
 ## 🛠 기술 스택 (Tech Stack)
-**Language**: Python 3.x
-**Web Application (Frontend)**: Streamlit
-**Data Analysis & Statistics**: Pandas, NumPy, SciPy, Statsmodels
-**Data Visualization**: Plotly, Altair, Matplotlib, Pydeck
-**Database & Server**: MySQL
-**Data Collection**: Requests, urllib3
-**Configuration & Tools**: python-dotenv
+- **Language**: Python 3.x
+- **Web Application (Frontend)**: Streamlit
+- **Data Analysis & Statistics**: Pandas, NumPy, SciPy, Statsmodels
+- **Data Visualization**: Plotly, Altair, Matplotlib, Pydeck
+- **Database & Server**: MySQL
+- **Data Collection**: Requests, urllib3
+- **Configuration & Tools**: python-dotenv
 
 ## 📁 디렉토리 구조 (Directory Structure)
 
+```
 📦 _02_team_project_car
  ┣ 📂 DB                          # 데이터베이스 및 원본 데이터 관리
  ┃ ┣ 📜 car_project.db            # 로컬 데이터베이스 파일 (SQLite)
@@ -60,3 +61,56 @@
  ┣ 📜 export_csv.py               # DB에 적재된 데이터를 CSV 형태로 일괄 추출하는 스크립트
  ┣ 📜 requirements.txt            # 프로젝트 실행에 필요한 파이썬 패키지 의존성 목록
  ┗ 📜 test.py                     # 각 모듈(크롤링, DB 연동 등)의 정상 작동 여부를 확인하는 테스트 스크립트
+ ```
+
+## ⚙️ 설치 및 실행 방법 (Getting Started)
+
+이 프로젝트를 로컬 환경에서 실행하기 위한 방법입니다.
+
+### 1. 레포지토리 클론
+```bash
+git clone [https://github.com/golddragon0926/_02_team_project_car.git](https://github.com/golddragon0926/_02_team_project_car.git)
+cd _02_team_project_car
+```
+
+2. 가상환경 생성 및 패키지 설치
+Python 3.x 환경에서 필요한 라이브러리를 설치합니다.
+```bash
+# 가상환경 생성 및 활성화 (선택)
+python -m venv venv
+source venv/bin/activate  # Windows: venv\Scripts\activate
+
+# 패키지 설치
+pip install -r requirements.txt
+```
+
+3. 환경 변수 설정
+.env.example 파일을 복사하여 .env 파일을 생성하고, 본인의 데이터베이스 접속 정보 및 API 키를 입력합니다.
+
+```
+cp .env.example .env
+# 생성된 .env 파일 내의 DB_USER, DB_PASSWORD 등을 환경에 맞게 수정
+```
+
+4. 데이터베이스 초기 세팅
+로컬 DB 환경에 테이블 스키마를 생성합니다.
+
+```Bash
+# DB 폴더 내의 create_db.sql 스크립트를 사용하여 테이블 생성
+# (MySQL 워크벤치나 CLI에서 해당 sql 파일 실행)
+```
+
+5. Streamlit 대시보드 실행
+모든 세팅이 완료되면 아래 명령어를 통해 웹 애플리케이션을 실행합니다.
+```
+Bash
+streamlit run streamlit_app/app.py
+```
+
+ ## 👨‍💻 팀원 소개 및 역할 (Team)
+
+| 이름 | 담당 역할 (Role) | GitHub |
+|:---:|:---|:---|
+| **[이름1]** | **팀장 / Frontend & Data Analysis**<br>- Streamlit 대시보드(tab1~tab5) 전체 UI 설계<br>- Pydeck 및 Plotly를 활용한 데이터 시각화 | [@github_id](https://github.com/github_id) |
+| **[이름2]** | **Backend & Data Pipeline**<br>- 오피넷 및 지표누리 데이터 크롤링 (`opinet_api.py` 등)<br>- MySQL 데이터베이스 스키마 설계 및 연동 (`db_config.py`) | [@github_id](https://github.com/github_id) |
+| **[이름3]** | **Data Engineering & Crawling**<br>- 실시간 뉴스 API 및 FAQ 크롤러 구현 (`news_api.py`)<br>- 전처리 및 통계 데이터 추출 로직 작성 (`export_csv.py`) | [@github_id](https://github.com/github_id) |
