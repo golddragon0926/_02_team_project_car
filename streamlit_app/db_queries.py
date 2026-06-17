@@ -55,10 +55,10 @@ def load_oil_data(region_name='전체', fuel_code='GAS'):
 
 
 @st.cache_data
-def load_registration_data(region_name='전체'):
-    """차량 신규등록 데이터"""
+def load_registration_data(region_name='전체', start_month='2024-01', end_month='2026-05'):
     df = load_registration_csv()
     df = df[df['차종'] == '승용']
+    df = df[(df['월'] >= start_month) & (df['월'] <= end_month)]
     if region_name != '전체':
         df = df[df['지역'] == region_name]
     result = df.groupby(['월', '연료'])['등록대수'].sum().reset_index()
@@ -66,19 +66,25 @@ def load_registration_data(region_name='전체'):
 
 
 @st.cache_data
-def load_region_map_data():
-    """지역별 유가 + 친환경차 비율"""
+def load_region_map_data(start_month='2024-01', end_month='2026-05'):
     oil_df = load_oil_price_csv()
-    max_date = oil_df['날짜'].max()
-    oil_latest = oil_df[(oil_df['날짜'] == max_date) & (oil_df['유종'] == 'GAS')]
-    oil_latest = oil_latest.groupby('지역')['가격'].mean().reset_index()
+    oil_filtered = oil_df[
+        (oil_df['유종'] == 'GAS') &
+        (oil_df['월'] >= start_month) &
+        (oil_df['월'] <= end_month)
+    ]
+    oil_latest = oil_filtered.groupby('지역')['가격'].mean().reset_index()
     oil_latest.columns = ['지역', '평균유가']
     oil_latest['평균유가'] = oil_latest['평균유가'].round(0)
 
     reg_df = load_registration_csv()
-    reg_df = reg_df[reg_df['차종'] == '승용']
+    reg_filtered = reg_df[
+        (reg_df['차종'] == '승용') &
+        (reg_df['월'] >= start_month) &
+        (reg_df['월'] <= end_month)
+    ]
     eco_fuels = ['전기', '수소', '하이브리드']
-    eco = reg_df.groupby('지역').apply(
+    eco = reg_filtered.groupby('지역').apply(
         lambda x: pd.Series({
             '친환경': x[x['연료'].isin(eco_fuels)]['등록대수'].sum(),
             '전체': x['등록대수'].sum()

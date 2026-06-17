@@ -8,7 +8,24 @@ from db_queries import load_region_map_data, load_registration_data
 
 
 def render_tab2(korea_geojson):
-    map_data = load_region_map_data()
+
+    # 기간 선택
+    period = st.selectbox(
+        "📅 기간 선택",
+        ["24년 상반기", "24년 하반기", "25년 상반기", "25년 하반기", "26년 상반기"],
+        index=4
+    )
+
+    period_map = {
+        "24년 상반기": ("2024-01", "2024-06"),
+        "24년 하반기": ("2024-07", "2024-12"),
+        "25년 상반기": ("2025-01", "2025-06"),
+        "25년 하반기": ("2025-07", "2025-12"),
+        "26년 상반기": ("2026-01", "2026-05"),
+    }
+    start_month, end_month = period_map[period]
+
+    map_data = load_region_map_data(start_month, end_month)
 
     map_metric = st.radio(
         "지도에 표시할 데이터",
@@ -43,6 +60,7 @@ def render_tab2(korea_geojson):
 
     with col2:
         st.subheader("📊 지역 상세 데이터")
+        st.caption(f"기준 기간: {period}")
 
         clicked_region = '전체'
         if selected_map and selected_map.get('selection') and selected_map['selection'].get('points'):
@@ -56,7 +74,7 @@ def render_tab2(korea_geojson):
                 st.metric("평균 휘발유 가격", f"{region_info['평균유가'].values[0]:,.0f} 원/리터")
                 st.metric("친환경차 선택 비율", f"{region_info['친환경비율'].values[0]:.1f} %")
 
-        reg_detail = load_registration_data(clicked_region)
+        reg_detail = load_registration_data(clicked_region, start_month, end_month)
         if not reg_detail.empty:
             total_by_fuel = reg_detail.groupby('연료')['등록대수'].sum().reset_index()
             fig_detail = px.pie(
