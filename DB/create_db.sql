@@ -1,3 +1,16 @@
+# create user 'mycar'@'%' identified by '1234';
+#
+# CREATE DATABASE IF NOT EXISTS car_oil_db
+#   DEFAULT CHARACTER SET utf8mb4
+#   DEFAULT COLLATE utf8mb4_unicode_ci;
+#
+# show databases;
+# GRANT ALL PRIVILEGES ON car_oil_db.* TO 'mycar'@'%';
+# #
+# FLUSH PRIVILEGES;
+# #
+# show grants for 'mycar'@'%';
+
 -- =============================================
 -- 전국 유가 및 차량 등록 현황 분석 시스템
 -- DB 생성 SQL
