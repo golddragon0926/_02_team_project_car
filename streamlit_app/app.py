@@ -64,7 +64,7 @@ menus = [
     "📰 뉴스 & 이벤트",
     "💰 유류비 시뮬레이터",
     "❓ 전기차 보조금",
-    "❓ FAQ"
+    "⚡ FAQ"
 ]
 
 for menu in menus:
@@ -89,5 +89,5 @@ elif st.session_state.page == "💰 유류비 시뮬레이터":
     render_tab4()
 elif st.session_state.page == "❓ 전기차 보조금":
     render_tab6()
-elif st.session_state.page == "❓ FAQ":
+elif st.session_state.page == "⚡ FAQ":
     render_tab5()
