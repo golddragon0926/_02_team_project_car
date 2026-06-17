@@ -1,4 +1,4 @@
-# 🚗 자동차 데이터 수집 및 시각화 웹 서비스
+# 🚗 자동차 및 유가 데이터 통합 분석 대시보드
 
 ## 📖 프로젝트 소개
 이 프로젝트는 **오피넷(Opinet)**의 유가 데이터와 **e-나라지표(지표누리)**의 자동차 등록 및 수송 관련 데이터를 크롤링하여
@@ -12,6 +12,13 @@
   - 자동차 등록 대수 변화와 유가 간의 상관관계 분석 대시보드.
   - 조건별 데이터 필터링 및 조회 기능.
 - **데이터 추출**: DB에 축적된 데이터를 CSV 파일로 추출하여 추가적인 데이터 분석 가능 (`export_csv.py`).
+
+## 📊 데이터 출처 (Data Sources)
+
+본 프로젝트는 아래의 공공 데이터 및 API를 활용하여 구축되었습니다.
+- **[오피넷 (Opinet)](https://www.opinet.co.kr/)**: 지역별/기간별 실시간 유가 정보 데이터
+- **[e-나라지표 (지표누리)](https://www.index.go.kr/)**: 자동차 등록 현황 및 수송 관련 통계 데이터
+- **[뉴스 API 출처명](https://www.naver.com)**: 실시간 자동차 및 경제 관련 뉴스 수집
 
 ## 🛠 기술 스택 (Tech Stack)
 - **Language**: Python 3.10
@@ -114,6 +121,5 @@ streamlit run streamlit_app/app.py
 | **[김문규]** | **Frontend & Data Analysis**<br>- 자동차 현황 DB설계<br> - Streamlit 대시보드 전체적인 UI 설계<br>- Pydeck 및 Plotly를 활용한 데이터 시각화 | [@github_id](https://github.com/github_id) |
 | **[김성훈]** | **Backend & Data Pipeline**<br>- FAQ 크롤링 및 csv파일 저장<br> - Streamlit 대시보드(tab5) UI 설계<br> | [@github_id](https://github.com/github_id) |
 | **[김영석]** | **Data Engineering & Crawling**<br>- 실시간 뉴스 API 설계 및 구현 (`news_api.py`, `tab3_news.py`)<br>- 전처리 및 데이터 추출 로직 작성 | [@github_id](https://github.com/github_id) |
-| **[송지섭]** | **Data Engineering & Crawling**<br>- 연료 가격 DB데이터 설계 및 구현<br>(`db_config.py`, `opinet_api.py`)<br>- 전처리 및 통계 데이터 추출 로직 작성 (`export_csv.py`) | [@github_id](https://github.com/github_id) |
+| **[송지섭]** | **Data Engineering & Crawling**<br>- 연료 가격 DB데이터 설계 및 구현(`db_config.py`, `opinet_api.py`)<br>- 전처리 및 통계 데이터 추출 로직 작성 (`export_csv.py`) | [@github_id](https://github.com/github_id) |
 | **[최경돈]** | **Data Engineering & Crawling**<br>- DB데이터 설계 및 정제  (`news_api.py`)<br>- 전처리 및 통계 데이터 추출 로직 작성 (`export_csv.py`) | [@github_id](https://github.com/github_id) |
-
