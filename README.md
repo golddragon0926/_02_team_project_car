@@ -69,7 +69,7 @@
 
 ### 1. 레포지토리 클론
 ```bash
-git clone [https://github.com/golddragon0926/_02_team_project_car.git](https://github.com/golddragon0926/_02_team_project_car.git)
+git clone https://github.com/golddragon0926/_02_team_project_car.git
 cd _02_team_project_car
 ```
 
@@ -78,7 +78,7 @@ Python 3.x 환경에서 필요한 라이브러리를 설치합니다.
 ```bash
 # 가상환경 생성 및 활성화 (선택)
 python -m venv venv
-source venv/bin/activate  # Windows: venv\Scripts\activate
+source venv/bin/activate
 
 # 패키지 설치
 pip install -r requirements.txt
@@ -111,6 +111,8 @@ streamlit run streamlit_app/app.py
 
 | 이름 | 담당 역할 (Role) | GitHub |
 |:---:|:---|:---|
-| **[이름1]** | **팀장 / Frontend & Data Analysis**<br>- Streamlit 대시보드(tab1~tab5) 전체 UI 설계<br>- Pydeck 및 Plotly를 활용한 데이터 시각화 | [@github_id](https://github.com/github_id) |
-| **[이름2]** | **Backend & Data Pipeline**<br>- 오피넷 및 지표누리 데이터 크롤링 (`opinet_api.py` 등)<br>- MySQL 데이터베이스 스키마 설계 및 연동 (`db_config.py`) | [@github_id](https://github.com/github_id) |
-| **[이름3]** | **Data Engineering & Crawling**<br>- 실시간 뉴스 API 및 FAQ 크롤러 구현 (`news_api.py`)<br>- 전처리 및 통계 데이터 추출 로직 작성 (`export_csv.py`) | [@github_id](https://github.com/github_id) |
+| **[김문규]** | **Frontend & Data Analysis**<br>- Streamlit 대시보드 전체적인 UI 설계<br>- Pydeck 및 Plotly를 활용한 데이터 시각화 | [@github_id](https://github.com/github_id) |
+| **[김성훈]** | **Backend & Data Pipeline**<br>- FAQ 크롤링 및 csv파일 저장<br> - Streamlit 대시보드(tab5) UI 설계<br> | [@github_id](https://github.com/github_id) |
+| **[김영석]** | **Data Engineering & Crawling**<br>- 실시간 뉴스 API 설계 및 구현 (`news_api.py`)<br>- 전처리 및 데이터 추출 로직 작성 | [@github_id](https://github.com/github_id) |
+| **[송지섭]** | **Data Engineering & Crawling**<br>- 자동차 현황 및 연료 가격 DB데이터 설계 및 정제 (`db_config.py`, `opinet_api.py`)<br>- 전처리 및 통계 데이터 추출 로직 작성 (`export_csv.py`) | [@github_id](https://github.com/github_id) |
+| **[최경돈]** | **Data Engineering & Crawling**<br>- DB데이터 설계 및 정제  (`news_api.py`)<br>- 전처리 및 통계 데이터 추출 로직 작성 (`export_csv.py`) | [@github_id](https://github.com/github_id) |
