@@ -13,7 +13,7 @@ from tab1_trend import render_tab1
 from tab2_map   import render_tab2
 from tab3_news  import render_tab3
 from tab4_sim   import render_tab4
-from tab5_faq import run_faq_tab
+from tab5_faq   import run_faq_tab
 
 st.set_page_config(
     page_title="유가 변동 & 자동차 등록 현황",
@@ -21,48 +21,69 @@ st.set_page_config(
     layout="wide"
 )
 
+st.markdown("""
+<style>
+/* 선택된 버튼 (Primary) - 하늘색 */
+[data-testid="stSidebar"] .stButton button[kind="primary"] {
+    background-color: #5DADE2;
+    color: white;
+    border: none;
+}
+
+/* 기본 버튼 (Secondary) */
+[data-testid="stSidebar"] .stButton button[kind="secondary"] {
+    background-color: white;
+    color: #2C3E50;
+    border: 1px solid #AED6F1;
+}
+</style>
+""", unsafe_allow_html=True)
+
 # GeoJSON 로드
 GEOJSON_PATH = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'korea.geojson')
 with open(GEOJSON_PATH, encoding='utf-8') as f:
     korea_geojson = json.load(f)
 
 # =============================================
+# 세션 상태 초기화
+# =============================================
+if 'page' not in st.session_state:
+    st.session_state.page = "📈 종합 트렌드"
+
+# =============================================
 # 사이드바
 # =============================================
-st.sidebar.title("🔧 필터")
-oil_fuel = st.sidebar.radio("유가 기준 유종", ['휘발유', '경유'])
-oil_fuel_code = 'GAS' if oil_fuel == '휘발유' else 'DSL'
-group_mode = st.sidebar.toggle("내연기관 vs 친환경 그룹화")
+st.sidebar.title("🚗 유가 변동")
+st.sidebar.caption("자동차 현황 대시보드")
+st.sidebar.markdown("---")
 
-# =============================================
-# 타이틀
-# =============================================
-st.title("🚗 유가 변동에 따른 자동차 현황 대시보드")
-st.caption("유가는 신규 자동차 선택 및 운행 등에 영향을 미쳤을까?")
-st.markdown("---")
-
-# =============================================
-# 탭
-# =============================================
-tab1, tab2, tab3, tab4, tab5 = st.tabs([
+menus = [
     "📈 종합 트렌드",
     "🗺️ 지역별 비교",
     "📰 뉴스 & 이벤트",
     "💰 유류비 시뮬레이터",
-    "FAQ"
-])
+    "❓ FAQ"
+]
 
-with tab1:
-    render_tab1(oil_fuel, oil_fuel_code, group_mode)
+for menu in menus:
+    if st.sidebar.button(
+        menu,
+        use_container_width=True,
+        type="primary" if st.session_state.page == menu else "secondary"
+    ):
+        st.session_state.page = menu
+        st.rerun()  # ← 즉시 반영
 
-with tab2:
+# =============================================
+# 페이지 전환
+# =============================================
+if st.session_state.page == "📈 종합 트렌드":
+    render_tab1()
+elif st.session_state.page == "🗺️ 지역별 비교":
     render_tab2(korea_geojson)
-
-with tab3:
+elif st.session_state.page == "📰 뉴스 & 이벤트":
     render_tab3()
-
-with tab4:
+elif st.session_state.page == "💰 유류비 시뮬레이터":
     render_tab4()
-
-with tab5:
+elif st.session_state.page == "❓ FAQ":
     run_faq_tab()

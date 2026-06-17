@@ -9,7 +9,15 @@ from plotly.subplots import make_subplots
 from db_queries import load_oil_data, load_registration_data, load_region_list
 
 
-def render_tab1(oil_fuel, oil_fuel_code, group_mode):
+def render_tab1():
+    st.title("🚗 유가 변동에 따른 자동차 현황 대시보드")
+    st.caption("유가는 신규 자동차 선택 및 운행 등에 영향을 미쳤을까?")
+    st.markdown("---")
+
+    oil_fuel = st.radio("유가 기준 유종", ['휘발유', '경유'], horizontal=True)
+    oil_fuel_code = 'GAS' if oil_fuel == '휘발유' else 'DSL'
+    group_mode = st.toggle("내연기관 vs 친환경 그룹화")
+
     regions = load_region_list()
     selected_region = st.selectbox("지역 선택", regions, key='tab1_region')
 
