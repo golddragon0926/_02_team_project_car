@@ -14,7 +14,7 @@
 - **데이터 추출**: DB에 축적된 데이터를 CSV 파일로 추출하여 추가적인 데이터 분석 가능 (`export_csv.py`).
 
 ## 🛠 기술 스택 (Tech Stack)
-- **Language**: Python 3.x
+- **Language**: Python 3.10
 - **Web Application (Frontend)**: Streamlit
 - **Data Analysis & Statistics**: Pandas, NumPy, SciPy, Statsmodels
 - **Data Visualization**: Plotly, Altair, Matplotlib, Pydeck
@@ -114,3 +114,4 @@ streamlit run streamlit_app/app.py
 | **[이름1]** | **팀장 / Frontend & Data Analysis**<br>- Streamlit 대시보드(tab1~tab5) 전체 UI 설계<br>- Pydeck 및 Plotly를 활용한 데이터 시각화 | [@github_id](https://github.com/github_id) |
 | **[이름2]** | **Backend & Data Pipeline**<br>- 오피넷 및 지표누리 데이터 크롤링 (`opinet_api.py` 등)<br>- MySQL 데이터베이스 스키마 설계 및 연동 (`db_config.py`) | [@github_id](https://github.com/github_id) |
 | **[이름3]** | **Data Engineering & Crawling**<br>- 실시간 뉴스 API 및 FAQ 크롤러 구현 (`news_api.py`)<br>- 전처리 및 통계 데이터 추출 로직 작성 (`export_csv.py`) | [@github_id](https://github.com/github_id) |
+
