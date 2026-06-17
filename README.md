@@ -23,7 +23,7 @@
 **Configuration & Tools**: python-dotenv
 
 ## 📁 디렉토리 구조 (Directory Structure)
-
+```
 📦 _02_team_project_car
  ┣ 📂 DB                          # 데이터베이스 및 원본 데이터 관리
  ┃ ┣ 📜 car_project.db            # 로컬 데이터베이스 파일 (SQLite)
@@ -60,3 +60,4 @@
  ┣ 📜 export_csv.py               # DB에 적재된 데이터를 CSV 형태로 일괄 추출하는 스크립트
  ┣ 📜 requirements.txt            # 프로젝트 실행에 필요한 파이썬 패키지 의존성 목록
  ┗ 📜 test.py                     # 각 모듈(크롤링, DB 연동 등)의 정상 작동 여부를 확인하는 테스트 스크립트
+```
