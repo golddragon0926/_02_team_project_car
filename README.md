@@ -14,13 +14,13 @@
 - **데이터 추출**: DB에 축적된 데이터를 CSV 파일로 추출하여 추가적인 데이터 분석 가능 (`export_csv.py`).
 
 ## 🛠 기술 스택 (Tech Stack)
-**Language**: Python 3.x
-**Web Application (Frontend)**: Streamlit
-**Data Analysis & Statistics**: Pandas, NumPy, SciPy, Statsmodels
-**Data Visualization**: Plotly, Altair, Matplotlib, Pydeck
-**Database & Server**: MySQL
-**Data Collection**: Requests, urllib3
-**Configuration & Tools**: python-dotenv
+** Language**: Python 3.x
+** Web Application (Frontend)**: Streamlit
+** Data Analysis & Statistics**: Pandas, NumPy, SciPy, Statsmodels
+** Data Visualization**: Plotly, Altair, Matplotlib, Pydeck
+** Database & Server**: MySQL
+** Data Collection**: Requests, urllib3
+** Configuration & Tools**: python-dotenv
 
 ## 📁 디렉토리 구조 (Directory Structure)
 ```
