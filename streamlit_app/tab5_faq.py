@@ -36,7 +36,7 @@ def get_faq_data(search_query="", source_filter="전체"):
     conn.close()
     return results
 
-def run_faq_tab():
+def render_tab5():
     st.title("📋 자동차 및 무공해차 FAQ 게시판")
     st.write("오피넷 및 무공해차 통합누리집에서 수집한 핵심 질문들을 모아둔 공간입니다.")
     st.markdown("---")
