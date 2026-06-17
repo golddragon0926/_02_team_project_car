@@ -15,6 +15,16 @@ import sys
 sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 from config.db_config import OPINET_API_KEY, NAVER_CLIENT_ID, NAVER_CLIENT_SECRET
 
+# 보조금 데이터의 시도 축약형 → Region 풀네임 매핑
+SIDO_TO_REGION_NAME = {
+    '서울': '서울특별시', '부산': '부산광역시', '대구': '대구광역시',
+    '인천': '인천광역시', '광주': '광주광역시', '대전': '대전광역시',
+    '울산': '울산광역시', '세종': '세종특별자치시', '경기': '경기도',
+    '강원': '강원도', '충북': '충청북도', '충남': '충청남도',
+    '전북': '전라북도', '전남': '전라남도', '경북': '경상북도',
+    '경남': '경상남도', '제주': '제주특별자치도'
+}
+
 
 @st.cache_data
 def load_oil_price_csv():
@@ -92,7 +102,25 @@ def load_region_map_data(start_month='2024-01', end_month='2026-05'):
     ).reset_index()
     eco['친환경비율'] = (eco['친환경'] / eco['전체'] * 100).round(1)
 
-    return pd.merge(oil_latest, eco[['지역', '친환경비율']], on='지역')
+    result = pd.merge(oil_latest, eco[['지역', '친환경비율']], on='지역')
+
+    # 보조금 데이터 병합 (sido 축약형 → 지역 풀네임 매핑, 연도 무관 전체 평균)
+    subsidy_df = load_subsidy_csv()
+    subsidy_df = subsidy_df[subsidy_df['sido'] != '공단']  # 시도 단위가 아닌 별도 채널 제외
+    subsidy_avg = subsidy_df.groupby('sido')['total_subsidy'].mean().reset_index()
+    subsidy_avg.columns = ['sido', '평균보조금']
+    subsidy_avg['평균보조금'] = subsidy_avg['평균보조금'].round(0)
+    subsidy_avg['지역'] = subsidy_avg['sido'].map(SIDO_TO_REGION_NAME)
+
+    result = pd.merge(result, subsidy_avg[['지역', '평균보조금']], on='지역', how='left')
+    return result
+
+
+@st.cache_data
+def load_subsidy_csv():
+    """전기차 보조금 CSV 로드"""
+    df = pd.read_csv(f'{DATA_DIR}/subsidy.csv', encoding='utf-8-sig')
+    return df
 
 
 @st.cache_data

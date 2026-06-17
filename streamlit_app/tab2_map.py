@@ -29,13 +29,16 @@ def render_tab2(korea_geojson):
 
     map_metric = st.radio(
         "지도에 표시할 데이터",
-        ['친환경차 비율 (%)', '평균 휘발유 가격 (원)'],
+        ['친환경차 비율 (%)', '평균 휘발유 가격 (원)', '평균 전기차 보조금 (만원)'],
         horizontal=True
     )
 
-    metric_col = '친환경비율' if map_metric == '친환경차 비율 (%)' else '평균유가'
-    color_scale = 'Greens' if metric_col == '친환경비율' else 'Reds'
-    label = '친환경차 비율(%)' if metric_col == '친환경비율' else '평균유가(원)'
+    metric_map = {
+        '친환경차 비율 (%)': ('친환경비율', 'Greens', '친환경차 비율(%)'),
+        '평균 휘발유 가격 (원)': ('평균유가', 'Reds', '평균유가(원)'),
+        '평균 전기차 보조금 (만원)': ('평균보조금', 'Blues', '평균보조금(만원)'),
+    }
+    metric_col, color_scale, label = metric_map[map_metric]
 
     col1, col2 = st.columns([1.2, 1])
 
@@ -53,7 +56,7 @@ def render_tab2(korea_geojson):
             center={"lat": 36.5, "lon": 127.5},
             opacity=0.7,
             labels={metric_col: label},
-            hover_data={'지역': True, '친환경비율': True, '평균유가': True}
+            hover_data={'지역': True, '친환경비율': True, '평균유가': True, '평균보조금': True}
         )
         fig_map.update_layout(height=550, margin={"r":0,"t":0,"l":0,"b":0})
         selected_map = st.plotly_chart(fig_map, use_container_width=True, on_select='rerun')
@@ -71,8 +74,14 @@ def render_tab2(korea_geojson):
         if clicked_region != '전체':
             region_info = map_data[map_data['지역'] == clicked_region]
             if not region_info.empty:
-                st.metric("평균 휘발유 가격", f"{region_info['평균유가'].values[0]:,.0f} 원/리터")
-                st.metric("친환경차 선택 비율", f"{region_info['친환경비율'].values[0]:.1f} %")
+                m1, m2, m3 = st.columns(3)
+                m1.metric("평균 휘발유 가격", f"{region_info['평균유가'].values[0]:,.0f} 원/리터")
+                m2.metric("친환경차 선택 비율", f"{region_info['친환경비율'].values[0]:.1f} %")
+                subsidy_val = region_info['평균보조금'].values[0]
+                if subsidy_val == subsidy_val:  # NaN 체크
+                    m3.metric("평균 전기차 보조금", f"{subsidy_val:,.0f} 만원")
+                else:
+                    m3.metric("평균 전기차 보조금", "데이터 없음")
 
         reg_detail = load_registration_data(clicked_region, start_month, end_month)
         if not reg_detail.empty:
