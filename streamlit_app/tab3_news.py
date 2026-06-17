@@ -57,6 +57,7 @@ def render_tab3():
             selected_month = st.selectbox(
                 "급등 시점 선택",
                 surge_months,
+                index=len(surge_months) - 1,
                 format_func=lambda x: f"{x} (+{surge_df[surge_df['월']==x]['전월대비'].values[0]:.1f}%)"
             )
 
