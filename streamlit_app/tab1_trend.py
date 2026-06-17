@@ -73,9 +73,26 @@ def render_tab1():
         )
         st.plotly_chart(fig, use_container_width=True)
 
-    st.subheader("연료별 신규등록 비율")
+    # ===============================
+    # 누적 등록 비율 (2024.01 ~ 2026.05 전체)
+    # ===============================
+    st.markdown("---")
+    st.subheader("연료별 누적 신규등록 비율 (2024.01 ~ 2026.05 전체)")
+
     total_by_fuel = reg_df.groupby('연료')['등록대수'].sum().reset_index()
-    fig2 = px.pie(total_by_fuel, values='등록대수', names='연료', hole=0.4,
-                  color_discrete_sequence=px.colors.qualitative.Set3)
-    fig2.update_layout(height=400)
-    st.plotly_chart(fig2, use_container_width=True)
+    total_by_fuel = total_by_fuel.sort_values('등록대수', ascending=False)
+
+    col_pie, col_table = st.columns([1, 1])
+
+    with col_pie:
+        fig2 = px.pie(total_by_fuel, values='등록대수', names='연료', hole=0.4,
+                      color_discrete_sequence=px.colors.qualitative.Set3)
+        fig2.update_layout(height=400)
+        st.plotly_chart(fig2, use_container_width=True)
+
+    with col_table:
+        table_df = total_by_fuel.copy()
+        table_df['비율(%)'] = (table_df['등록대수'] / table_df['등록대수'].sum() * 100).round(1)
+        table_df.columns = ['연료', '누적 등록대수', '비율(%)']
+        table_df['누적 등록대수'] = table_df['누적 등록대수'].astype(int).map('{:,}'.format)
+        st.dataframe(table_df, use_container_width=True, hide_index=True)
