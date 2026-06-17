@@ -1,5 +1,5 @@
 # =============================================
-# 유가 변동에 따른 자동차 현황 파악 대시보드
+# 유가 변동에 따른 자동차 등록 현황 파악 대시보드
 # =============================================
 
 import streamlit as st
@@ -55,7 +55,7 @@ if 'page' not in st.session_state:
 # 사이드바
 # =============================================
 st.sidebar.title("🚗 유가 변동")
-st.sidebar.caption("자동차 현황 대시보드")
+st.sidebar.caption("자동차 등록 현황 대시보드")
 st.sidebar.markdown("---")
 
 menus = [
@@ -64,7 +64,7 @@ menus = [
     "📰 뉴스 & 이벤트",
     "💰 유류비 시뮬레이터",
     "❓ FAQ",
-    "❓ 전기차 보조금"
+    "⚡ 전기차 보조금"
 ]
 
 for menu in menus:
@@ -89,5 +89,5 @@ elif st.session_state.page == "💰 유류비 시뮬레이터":
     render_tab4()
 elif st.session_state.page == "❓ FAQ":
     render_tab5()
-elif st.session_state.page == "❓ 전기차 보조금":
+elif st.session_state.page == "⚡ 전기차 보조금":
     render_tab6()
