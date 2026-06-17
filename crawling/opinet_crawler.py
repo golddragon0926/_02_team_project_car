@@ -32,7 +32,7 @@ for row in rows:
             "id": faq_id,
             "분류":
                 cols[1].get_text(strip=True),
-            "질문":
+            "title":
                 cols[2].get_text(strip=True),
             "작성일":
                 cols[3].get_text(strip=True)
@@ -65,10 +65,20 @@ def get_answer(faq_id):
 
 for item in data:
     print("수집중:", item["id"])
-    item["답변"] = get_answer(item["id"])
+    item["content"] = get_answer(item["id"])
 
+
+df = pd.DataFrame(data)
+# 컬럼 순서 변경
+new_order = [
+    'title',
+    'content',
+    'id',
+    '분류',
+    '작성일'
+]
+df = df[new_order]
 
 # 4. 저장
-df = pd.DataFrame(data)
-df.to_csv("opinet_faq.csv", encoding="utf-8-sig", index=False)
+df.to_csv("opinet_faq_data.csv", encoding="utf-8-sig", index=False)
 print("완료")
