@@ -13,6 +13,7 @@ from tab1_trend import render_tab1
 from tab2_map   import render_tab2
 from tab3_news  import render_tab3
 from tab4_sim   import render_tab4
+from tab5_faq import run_faq_tab
 
 st.set_page_config(
     page_title="유가 변동 & 자동차 등록 현황",
@@ -43,11 +44,12 @@ st.markdown("---")
 # =============================================
 # 탭
 # =============================================
-tab1, tab2, tab3, tab4 = st.tabs([
+tab1, tab2, tab3, tab4, tab5 = st.tabs([
     "📈 종합 트렌드",
     "🗺️ 지역별 비교",
     "📰 뉴스 & 이벤트",
-    "💰 유류비 시뮬레이터"
+    "💰 유류비 시뮬레이터",
+    "FAQ"
 ])
 
 with tab1:
@@ -61,3 +63,6 @@ with tab3:
 
 with tab4:
     render_tab4()
+
+with tab5:
+    run_faq_tab()
