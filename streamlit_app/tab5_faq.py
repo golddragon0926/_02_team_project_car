@@ -7,12 +7,14 @@ def render_tab5():
     st.subheader("🚗 자동차 통합 FAQ 및 지원 플랫폼")
     st.caption("현대자동차, 기아자동차, 오피넷, BMW 등 흩어져 있는 자동차 관련 핵심 FAQ를 이곳에서 한방에 검색하세요!")
 
-    # 1. 분리된 개별 CSV 파일 경로 매핑
+    base_path = os.getcwd()
+
+    # 1. s분리된 개별 CSV 파일 경로 매핑
     FAQ_SOURCES = {
-        "현대자동차": os.path.join("data", "hyundai_faq_data.csv"),
-        "기아자동차": os.path.join("data", "kia_faq_data.csv"),
-        "오피넷": os.path.join("data", "opinet_faq_data.csv"),
-        "BMW": os.path.join("data", "bmw_faq_data.csv")
+        "현대자동차": os.path.join(base_path, "data", "hyundai_faq_data.csv"),
+        "기아자동차": os.path.join(base_path, "data", "kia_faq_data.csv"),
+        "오피넷": os.path.join(base_path, "data", "opinet_faq_data.csv"),
+        "BMW": os.path.join(base_path, "data", "bmw_faq_data.csv")
         # "무공해차": os.path.join("data", "ev_faq_data.csv")
     }
 
