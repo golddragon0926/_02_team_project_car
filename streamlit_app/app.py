@@ -17,7 +17,7 @@ from tab5_faq   import render_tab5
 from tab6_subsidy import render_tab6
 
 st.set_page_config(
-    page_title="유가 변동 & 자동차 등록 현황",
+    page_title="최근 자동차 등록 현황",
     page_icon="🚗",
     layout="wide"
 )
@@ -54,16 +54,16 @@ if 'page' not in st.session_state:
 # =============================================
 # 사이드바
 # =============================================
-st.sidebar.title("🚗 유가 변동")
-st.sidebar.caption("자동차 현황 대시보드")
+st.sidebar.title("자동차 등록 현황")
+st.sidebar.caption("현황 대시보드")
 st.sidebar.markdown("---")
 
 menus = [
     "📈 종합 트렌드",
-    "🗺️ 지역별 비교",
     "📰 뉴스 & 이벤트",
-    "💰 유류비 시뮬레이터",
+    "🗺️ 지역별 비교",
     "⚡ 전기차 보조금",
+    "💰 유류비 시뮬레이터",
     "❓ FAQ"
 ]
 

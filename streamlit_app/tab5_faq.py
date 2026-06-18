@@ -6,6 +6,16 @@ def render_tab5():
     st.subheader("🚗 자동차 통합 FAQ 및 지원 플랫폼")
     st.caption("현대자동차, 기아자동차, 오피넷, BMW, KGM 등 흩어져 있는 자동차 관련 핵심 FAQ를 이곳에서 한방에 검색하세요!")
 
+    # multiselect 선택 태그 색상 - 하늘색으로 변경
+    st.markdown("""
+    <style>
+    span[data-baseweb="tag"] {
+        background-color: #5DADE2 !important;
+        color: white !important;
+    }
+    </style>
+    """, unsafe_allow_html=True)
+
     base_path = os.getcwd()
     faq_path = os.path.join(base_path, "data", "faq.csv")
 
@@ -17,7 +27,7 @@ def render_tab5():
 
     st.write("### 🔍 내 입맛대로 필터링")
 
-    # 모든 브랜드가 기본으로 체크되도록 초기화
+    # 사용자가 직접 선택 (기본값 없음)
     all_filters = sorted(df["brand"].unique().tolist())
     selected_filters = st.multiselect(
         "📝 조회할 기관 및 브랜드를 선택하세요 (중복 선택 가능)",
@@ -27,7 +37,7 @@ def render_tab5():
     # 통합 키워드 검색창
     search_query = st.text_input("💡 검색어를 입력하세요 (질문이나 답변 내용 전체 검색 가능)", "")
 
-    # 선택된 브랜드로 필터링
+    # 선택된 브랜드로 필터링 (선택 안 하면 전체)
     active_filters = selected_filters if selected_filters else all_filters
     filtered_df = df[df["brand"].isin(active_filters)].copy()
 
