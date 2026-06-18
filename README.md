@@ -164,7 +164,6 @@ streamlit run streamlit_app/app.py
 ```
 
 ## 7. 수행 화면 캡처
-<img width="2127" height="901" alt="Image" src="https://github.com/user-attachments/assets/6bae3989-1ea2-447e-848f-5b054ff0170d" />
-<img width="2135" height="901" alt="Image" src="https://github.com/user-attachments/assets/a88b4a92-38a3-4f87-a1f7-5da6e20f2d35" />
+<img width="2551" height="1365" alt="Image" src="https://github.com/user-attachments/assets/6637f29b-6a1f-4e8a-98fe-7d0a45211f49" />
 
 ## 8. 회고
