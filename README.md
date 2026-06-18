@@ -90,6 +90,7 @@
     ├── tab5_faq.py              # [탭 5] 자동차 브랜드별 FAQ 검색 기능
     └── tab6_subsidy.py          # [탭 6] 지역/차종별 전기차 보조금 안내
  ```
+<img width="1386" height="803" alt="image" src="https://github.com/user-attachments/assets/4109bcad-fdb0-41a9-9986-8a47659c4ab3" />
 
 ## ⚙️ 설치 및 실행 방법 (Getting Started)
 
