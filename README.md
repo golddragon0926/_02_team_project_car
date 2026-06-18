@@ -1,6 +1,5 @@
 # 🚗 유가 변동에 따른 자동차 트렌드 분석 대시보드
 
-<br>
 ## 📖 프로젝트 소개
 "고유가 시대, 내 차 마련을 위한 가장 스마트한 데이터 가이드"
 
@@ -10,14 +9,12 @@
 
 공공데이터(오피넷, 국토교통부)와 자체 구축한 데이터 파이프라인(전기차 보조금, 브랜드 FAQ 크롤링, 실시간 뉴스 RSS)을 결합하여 다음과 같은 입체적인 인사이트를 제공합니다.
 
-<br>
 ## 🚀 주요 기능 (Features)
 - **📈 종합 트렌드 분석:** 전국 월별 평균 유가 추이와 연료별(휘발유, 경유, 전기, 하이브리드 등) 신규 차량 등록 대수 상관관계 시각화
 - **🗺️ 지역별 비교:** 전국 17개 시도의 평균 유가와 친환경차(EV/HEV/FCEV) 선택 비율의 지역별 차이 및 상관관계 분석
 - **💰 유류비 시뮬레이터:** 현재 전국 평균 유가를 반영하여 사용자의 주행 조건에 맞는 내연기관차 vs 전기차 연간 유지비 비교
 - **📰 실시간 뉴스 연동:** 구글 뉴스 RSS 피드를 활용한 자동차/유가 관련 실시간 트렌드 기사 제공
 
-<br>
 ## 📊 데이터 출처 (Data Sources)
 
 본 프로젝트는 아래의 공공 데이터 및 API를 활용하여 구축되었습니다.
@@ -26,15 +23,15 @@
 - **[뉴스 API 출처명](https://www.naver.com/)**: 실시간 자동차 및 경제 관련 뉴스 수집
 - **[환경부 무공해차 통합누리집](https://ev.or.kr/)**: 전기차 보조금 데이터
 
+## 🛠 기술 스택 (Tech Stack)
 
-<br>## 🛠 기술 스택 (Tech Stack)
 - **Language:** Python 3.10+
 - **Frontend / Dashboard:** Streamlit, Plotly
 - **Database:** MySQL
 - **Data Collection:** Pandas, Requests, XML Parsing (Google News RSS)
 - **Version Control:** Git, GitHub
 
-<br>
+
 ## 📁 디렉토리 구조 (Directory Structure)
 
 ```
@@ -94,7 +91,6 @@
     └── tab6_subsidy.py          # [탭 6] 지역/차종별 전기차 보조금 안내
  ```
 
-<br>
 ## ⚙️ 설치 및 실행 방법 (Getting Started)
 
 이 프로젝트를 로컬 환경에서 실행하기 위한 방법입니다.
@@ -152,7 +148,7 @@ Bash
 streamlit run streamlit_app/app.py
 ```
 
-<br>
+
  ## 👨‍💻 팀원 소개 및 역할 (Team)
 
 | 이름 | 담당 역할 (Role) | GitHub |
