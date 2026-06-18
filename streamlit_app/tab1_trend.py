@@ -10,13 +10,12 @@ from db_queries import load_oil_data, load_registration_data, load_region_list
 
 
 def render_tab1():
-    st.title("🚗 유가 변동에 따른 자동차 현황 대시보드")
-    st.caption("유가는 신규 자동차 선택 및 운행 등에 영향을 미쳤을까?")
+    st.title("🚗 최근 자동차 구매 및 등록 트렌드")
+    st.caption("유가변화 및 보조금은 신규 자동차 선택 및 운행 등에 영향을 미쳤을까?")
     st.markdown("---")
 
-    oil_fuel = st.radio("유가 기준 유종", ['휘발유', '경유'], horizontal=True)
-    oil_fuel_code = 'GAS' if oil_fuel == '휘발유' else 'DSL'
-    group_mode = st.toggle("내연기관 vs 친환경 그룹화")
+    oil_fuel = '휘발유'
+    oil_fuel_code = 'GAS'
 
     regions = load_region_list()
     selected_region = st.selectbox("지역 선택", regions, key='tab1_region')
@@ -28,15 +27,7 @@ def render_tab1():
         st.warning("선택한 조건에 해당하는 데이터가 없어요.")
         return
 
-    if group_mode:
-        reg_df['연료그룹'] = reg_df['연료'].apply(
-            lambda x: '친환경 (전기/수소/하이브리드)' if x in ['전기', '수소', '하이브리드']
-            else '내연기관 (휘발유/경유)'
-        )
-        reg_pivot = reg_df.groupby(['월', '연료그룹'])['등록대수'].sum().reset_index()
-        reg_pivot = reg_pivot.pivot(index='월', columns='연료그룹', values='등록대수').fillna(0)
-    else:
-        reg_pivot = reg_df.pivot(index='월', columns='연료', values='등록대수').fillna(0)
+    reg_pivot = reg_df.pivot(index='월', columns='연료', values='등록대수').fillna(0)
 
     common_months = sorted(set(oil_df['월']) & set(reg_pivot.index))
 
