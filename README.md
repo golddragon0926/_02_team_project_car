@@ -1,4 +1,4 @@
-# 🚗 연료 및 자동차 트렌드 분석 대시보드
+# 🚗 최근 자동차 구매 및 등록 트렌드
 
 ## 📖 프로젝트 소개
 "고유가 시대, 내 차 마련을 위한 가장 스마트한 데이터 가이드"
@@ -153,8 +153,8 @@ streamlit run streamlit_app/app.py
 
 | 이름 | 담당 역할 (Role) | GitHub |
 |:---:|:---|:---|
-| **[김문규]** | **Frontend & Data Analysis**<br>- 자동차 현황 DB설계<br> - Streamlit 대시보드 전체적인 UI 설계<br>- Pydeck 및 Plotly를 활용한 데이터 시각화 | [@github_id](https://github.com/github_id) |
-| **[김성훈]** | **Backend & Data Pipeline**<br>- FAQ 크롤링 및 csv파일 저장<br> - Streamlit 대시보드(tab5) UI 설계<br> | [@github_id](https://github.com/github_id) |
-| **[김영석]** | **Data Engineering & Crawling**<br>- 실시간 뉴스 API 설계 및 구현 (`news_api.py`, `tab3_news.py`)<br>- 전처리 및 데이터 추출 로직 작성 | [@golddragon0926](https://github.com/golddragon0926) |
-| **[송지섭]** | **Data Engineering & Crawling**<br>- 연료 가격 DB데이터 설계 및 구현(`db_config.py`, `opinet_api.py`)<br>- 전처리 및 통계 데이터 추출 로직 작성 (`export_csv.py`) | [@github_id](https://github.com/github_id) |
-| **[최경돈]** | **Data Engineering & Crawling**<br>- DB데이터 설계 및 정제  (`news_api.py`)<br>- 전처리 및 통계 데이터 추출 로직 작성 (`export_csv.py`) | [@github_id](https://github.com/github_id) |
+| **김문규** | 📊 **차량 데이터 분석 및 UI/UX 총괄**<br> • 자동차 현황 DB 아키텍처 설계<br> • Streamlit 대시보드 전체 UI 기획 및 구현<br> • Pydeck/Plotly 기반 핵심 지표 시각화 | [@tender0602](https://github.com/tender0602) |
+| **김성훈** | ⚙️ **데이터 파이프라인 및 프론트엔드 지원**<br> • 브랜드별 FAQ 데이터 수집 자동화<br> • 공간/통계 데이터 렌더링 및 시각화<br> • Streamlit UI 컴포넌트 개발 | [@tjdgns8343](https://github.com/tjdgns8343) |
+| **김영석** | 🛠️ **데이터 엔지니어링 및 외부 API 연동**<br> • 유가/연료 핵심 DB 설계 및 구축<br> • 공공데이터 전처리 파이프라인 개발<br> • 구글 뉴스 RSS API 연동 및 실시간 트렌드 구현 | [@golddragon0926](https://github.com/golddragon0926) |
+| **송지섭** | 📈 **데이터 전처리 및 백엔드 지원**<br> • 유가/연료 데이터 통계 분석 및 정제<br> • FAQ 웹 스크래핑 및 텍스트 데이터 추출<br> • 대시보드 UI/UX 기능 개선 및 지원 | [@sji21](https://github.com/sji21) |
+| **최경돈** | ⚡ **공공데이터 API 및 크롤링 로직 구현**<br> • 전기차 보조금 API 연동 및 맞춤형 로직 개발<br> • 전기차 데이터(Raw Data) 추출 <br> • 브랜드별 FAQ 데이터 수집 및 정제 | [@dony6366](https://github.com/dony6366) |
