@@ -4,7 +4,7 @@
 
 import pandas as pd
 
-df = pd.read_csv("보조금데이터.csv", encoding="utf-8-sig")
+df = pd.read_csv("data/보조금데이터.csv", encoding="cp949")
 
 # ① 컬럼 목록
 print("=== 컬럼 목록 ===")
@@ -40,4 +40,6 @@ print(df["시도"].value_counts())
 print("\n=== 결측값 확인 ===")
 print(df.isnull().sum())
 
-
+# 연도별 데이터 수 확인
+print("\n=== 연도별 데이터 수 ===")
+print(df["연도"].value_counts())
